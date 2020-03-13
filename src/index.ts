@@ -88,23 +88,14 @@ app.get('/probe', (req, res) => {
 
                 arrayData.forEach(
                     (record, index) => {
-                        /*switch (record[0].trim()) {
-                            case 'Frequenz':
-                                result.push('# HELP electricity_meter_frequency Frequency in ' + record[1]);
-                                result.push('# TYPE electricity_meter_frequency gauge');
-                                result.push('electricity_meter_frequency ' +
-                                    parseFloat((record[targetIndex] as string)
-                                        .replace(',','.')))
-                                    .toFixed(2);
-                                break;
-                            default: break;
-
-                        }*/
-
                         if (index > 2) {
-                            let varName = record[0].trim().replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
-                            result.push('# HELP ' + varName + record[0] + record[1]);
-                            result.push('# TYPE ' + varName + record[0] + ' gauge');
+                            let varName = record[0]
+                                .trim()
+                                .replace(/[^a-zA-Z0-9]/g, '_')
+                                .replace(/__/g, '_')
+                                .toLowerCase();
+                            result.push('# HELP ' + varName + record[0].trim() + ' ' + record[1].trim());
+                            result.push('# TYPE ' + varName + record[0].trim() + ' gauge');
                             result.push(varName + ' ' + record[2].replace(',', '.').trim());
                         }
                     }
