@@ -1,0 +1,35 @@
+{
+    "name": "lan-server-modbus",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/index.js",
+    "scripts": {
+        "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+        "build": "tsc",
+        "_prestart": "npm run build",
+        "start": "nodemon --http-parser=legacy",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://jira.birkenstock.com/bitbucket/scm/mon/lan-server-modbus.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@types/papaparse": "^5.0.3",
+        "express": "^4.17.1",
+        "node-libcurl": "^2.0.3",
+        "papaparse": "^5.1.1",
+        "prom-client": "^12.0.0"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.3",
+        "@types/node": "^13.9.1",
+        "concurrently": "^5.1.0",
+        "nodemon": "^2.0.2",
+        "tslint": "^6.1.0",
+        "typescript": "^3.8.3"
+    }
+}
