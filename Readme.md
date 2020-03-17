@@ -6,22 +6,22 @@ The lan-server-modbus Prometheus exporter is a straight forward approach to prov
 
 Please feel free to provide input or issues to this project. It would be great if this exporter could support all the Modbus LAN servers out there 😃
 
-##Prerequisites
+## Prerequisites
 In order to run lan-server-modbus you need Node.js installed on your system.
 
-##Installation
+## Installation
 The Installation is simple as can be. 
 ```
 npm i
 ```
 
-##Configuration
+## Configuration
 The configuration of your LAN server will be asked upon installation. You can change the configuration everythime by 
 ```
 npm run configure
 ``` 
 
-##Running
+## Running
 To start the server run. 
 
 ```
@@ -36,7 +36,7 @@ npx path/to/lan-server-modbus
 
 (You might want to run this as a service)
 
-##Getting the values
+## Getting the values
 The exporter provides the values per installed digital current meter as follows
 
 ```
