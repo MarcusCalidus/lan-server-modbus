@@ -5,6 +5,8 @@
     "main": "dist/index.js",
     "scripts": {
         "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+        "postinstall": "npm run configure",
+        "configure": "node configure.js",
         "build": "tsc",
         "_prestart": "npm run build",
         "start": "nodemon",
@@ -29,6 +31,7 @@
         "concurrently": "^5.1.0",
         "nodemon": "^2.0.2",
         "tslint": "^6.1.0",
-        "typescript": "^3.8.3"
+        "typescript": "^3.8.3",
+        "prompt-input": "^3.0.0"
     }
 }
