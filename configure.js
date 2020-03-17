@@ -34,7 +34,7 @@ console.log('Welcome to the configuration of the K\'ELECTRIC LAN server Modbus/T
 function doPromptHost() {
     promptHost.ask((answer) => {
         fs.writeFileSync(path.join(__dirname, 'src', 'config.ts'),
-            `export const serverPort=9689;` +
+            `export const serverPort=9689;\n` +
             `export const lanServerHost ='http://${answer}';`);
     });
 }

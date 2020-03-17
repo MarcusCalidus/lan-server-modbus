@@ -17,7 +17,7 @@ app.get('/probe', (req, res) => {
     curl.on(
         'end',
         (statusCode, data) => {
-            let result: string[] = [];
+            const result: string[] = [];
 
             result.push('# HELP modbus_em_http_status_code Displays wheher or not the probe was a success');
             result.push('# TYPE modbus_em_http_status_code gauge');
@@ -29,7 +29,7 @@ app.get('/probe', (req, res) => {
                 result.push('modbus_em_success 0');
             } else {
                 // convert csv to array
-                let arrayData = parse(
+                const arrayData = parse(
                     data.toString(),
                     {
                         delimiter: ';',
@@ -50,7 +50,7 @@ app.get('/probe', (req, res) => {
                     arrayData.forEach(
                         (record, index) => {
                             if (index > 2) {
-                                let varName = 'modbus_em_' + record[0]
+                                const varName = 'modbus_em_' + record[0]
                                     .trim()
                                     .replace(/[^a-zA-Z0-9]/g, '_')
                                     .replace(/__/g, '_')
