@@ -1,5 +1,9 @@
 {
-    "author": "Marco Warm <MarcusCalidus@gmail.com>",
+    "author": {
+        "name": "Marco Warm",
+        "email": "MarcusCalidus@gmail.com",
+        "url": "https://github.com/MarcusCalidus"
+    },
     "dependencies": {
         "@types/papaparse": "^5.0.3",
         "express": "^4.17.1",
@@ -16,13 +20,15 @@
         "typescript": "^3.8.3",
         "prompt-input": "^3.0.0"
     },
-    "keywords": [],
+    "keywords": [
+        "Prometheus"
+    ],
     "license": "MIT",
     "main": "dist/index.js",
     "name": "lan-server-modbus",
     "repository": {
         "type": "git",
-        "url": "https://jira.birkenstock.com/bitbucket/scm/mon/lan-server-modbus.git",
+        "url": "https://jira.birkenstock.com/bitbucket/scm/mon/lan-server-modbus.git"
     },
     "scripts": {
         "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
