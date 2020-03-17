@@ -4,7 +4,7 @@ K'ELECTRIC offers a LAN server Modbus/TCP data concentrator device to read the v
 
 The lan-server-modbus Prometheus exporter is a straight forward approach to provide the data in neat Gauge values.
 
-Please feel free to provide input or issues to this project.
+Please feel free to provide input or issues to this project. It would be great if this exporter could support all the Modbus LAN servers out there 😃
 
 ##Prerequisites
 In order to run lan-server-modbus you need Node.js installed on your system.
