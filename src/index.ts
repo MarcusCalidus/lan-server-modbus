@@ -69,7 +69,7 @@ app.get('/probe', (req, res) => {
                     result.push('# TYPE modbus_em_success gauge');
                     result.push('modbus_em_success 1');
 
-                    res.send(result.join('\n'));
+                    res.send(result.join('\n') + '\n');
                 }
             }
         });
