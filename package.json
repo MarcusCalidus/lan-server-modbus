@@ -6,7 +6,7 @@
     },
     "dependencies": {
         "@types/papaparse": "^5.0.3",
-        "express": "^4.17.1",
+        "express": "^4.17.3",
         "node-libcurl": "^2.0.3",
         "papaparse": "^5.2.0"
     },
