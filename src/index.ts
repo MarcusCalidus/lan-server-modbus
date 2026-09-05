@@ -1,6 +1,6 @@
 import express from 'express';
 import {lanServerHost, serverPort} from './config';
-import {Curl} from "node-libcurl";
+import {Curl} from 'node-libcurl';
 import {parse} from 'papaparse';
 
 export const app = express();
@@ -29,7 +29,9 @@ app.get('/probe', (req, res) => {
                 result.push('modbus_em_success 0');
             } else {
                 // convert csv to array
-                const arrayData = parse(
+                // papaparse's parse() is generic; without the row type its rows
+                // come back as {} and cannot be indexed
+                const arrayData = parse<string[]>(
                     data.toString(),
                     {
                         delimiter: ';',
@@ -38,7 +40,7 @@ app.get('/probe', (req, res) => {
 
                 // find index of electricity meter.
                 // PID of meter is taken from query parameter target e.g. /probe?target=5I8P1265
-                const targetIndex = (arrayData[2] as string[]).findIndex( (s) => s.trim() === req.query.target);
+                const targetIndex = arrayData[2].findIndex( (s) => s.trim() === req.query.target);
                 if (targetIndex < 0) {
                     // target not found? tell the client!
                     res.sendStatus(404)
