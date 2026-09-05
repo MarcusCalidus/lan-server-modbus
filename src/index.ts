@@ -3,7 +3,7 @@ import {lanServerHost, serverPort} from './config';
 import {Curl} from "node-libcurl";
 import {parse} from 'papaparse';
 
-const app = express();
+export const app = express();
 
 app.get('/probe', (req, res) => {
     // create new Curl Object
@@ -80,7 +80,9 @@ app.get('/probe', (req, res) => {
     curl.perform();
 });
 
-// start the Express server
-app.listen(serverPort, () => {
-    console.log(`server started at http://localhost:${serverPort}`);
-});
+// start the Express server, unless this module was imported (e.g. by tests) rather than run directly
+if (require.main === module) {
+    app.listen(serverPort, () => {
+        console.log(`server started at http://localhost:${serverPort}`);
+    });
+}
