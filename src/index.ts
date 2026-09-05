@@ -1,9 +1,9 @@
 import express from 'express';
 import {lanServerHost, serverPort} from './config';
-import {Curl} from "node-libcurl";
+import {Curl} from 'node-libcurl';
 import {parse} from 'papaparse';
 
-const app = express();
+export const app = express();
 
 app.get('/probe', (req, res) => {
     // create new Curl Object
@@ -29,7 +29,9 @@ app.get('/probe', (req, res) => {
                 result.push('modbus_em_success 0');
             } else {
                 // convert csv to array
-                const arrayData = parse(
+                // papaparse's parse() is generic; without the row type its rows
+                // come back as {} and cannot be indexed
+                const arrayData = parse<string[]>(
                     data.toString(),
                     {
                         delimiter: ';',
@@ -38,7 +40,7 @@ app.get('/probe', (req, res) => {
 
                 // find index of electricity meter.
                 // PID of meter is taken from query parameter target e.g. /probe?target=5I8P1265
-                const targetIndex = (arrayData[2] as string[]).findIndex( (s) => s.trim() === req.query.target);
+                const targetIndex = arrayData[2].findIndex( (s) => s.trim() === req.query.target);
                 if (targetIndex < 0) {
                     // target not found? tell the client!
                     res.sendStatus(404)
@@ -80,7 +82,9 @@ app.get('/probe', (req, res) => {
     curl.perform();
 });
 
-// start the Express server
-app.listen(serverPort, () => {
-    console.log(`server started at http://localhost:${serverPort}`);
-});
+// start the Express server, unless this module was imported (e.g. by tests) rather than run directly
+if (require.main === module) {
+    app.listen(serverPort, () => {
+        console.log(`server started at http://localhost:${serverPort}`);
+    });
+}
